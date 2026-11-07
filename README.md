@@ -6,11 +6,11 @@
 
 一个基于 Cloudflare Workers + D1 + R2 构建的前后端分离的**开源临时邮箱服务**，支持 RESTful API 调用，适配多渠道发件，支持邮件接收、发送、转发、用户管理等功能。
 
-**当前版本：V5.3.1** - 新增 Cyberpersons 发件渠道，按发件人域名自动路由 Resend / SendFlare / Cyberpersons
+**当前版本：V5.3.2** - 安全修复：禁止认领他人已占用的邮箱地址，堵住跨用户邮箱接管（[issue #73](https://github.com/idinging/freemail/issues/73)）
 
 `本邮箱服务支持接收邮件时自动创建对应的邮箱，邮箱服务的转发目标邮箱地址需要在cloudflare Email Addresses中验证`
 
-📖 **[一键部署指南](docs/yijianbushu.md)** | 🤖 **[Github Action 部署指南](docs/action-deployment.md)** | 📬 **[Resend 发件配置](docs/resend.md)** | 🚀 **[SendFlare 发件配置](docs/sendflare.md)** | ☁️ **[Cyberpersons 发件配置](docs/cyberpersons.md)** | 📚 **[API 文档](docs/api.md)**
+📖 **[一键部署指南](docs/yijianbushu.md)** | 🤖 **[Github Action 部署指南](docs/action-deployment.md)** | 📬 **[Resend 发件配置](docs/resend.md)** | 🚀 **[SendFlare 发件配置](docs/sendflare.md)** | ☁️ **[Cyberpersons 发件配置](docs/cyberpersons.md)** | 📚 **[API 文档](docs/api.md)** | 🌐 <u>[IPWO 住宅代理](https://www.ipwo.net/?ref=githubfreemail)</u>
 
 ## 📸 项目展示
 ### 体验地址： https://freemail.cq.de5.net
@@ -43,6 +43,7 @@
 
 | 版本 | 主要更新 |
 |------|----------|
+| **V5.3.2** | 安全修复：禁止认领他人已占用的邮箱地址，堵住跨用户邮箱接管（[issue #73](https://github.com/idinging/freemail/issues/73)） |
 | **V5.3.1** | 新增 Cyberpersons（CyberPanel Email Delivery）发件渠道|
 | **V5.3.0** | 发件模块抽象为 `src/email/providers/` · 新增 SendFlare 渠道· 按发件人域名自动路由 · `sent_emails` 表新增 `provider` 字段 |
 | **V5.2.0** | 引入 postal-mime 改进邮件解析 · 修复部分客户端中文乱码问题 |
@@ -212,6 +213,14 @@ wrangler d1 execute TEMP_MAIL_DB --command "SELECT * FROM mailboxes LIMIT 10"
 ## 自动部署
 
 本项目支持 GitHub Actions 自动部署到 Cloudflare Workers。详细配置说明请参考 [自动部署指南](docs/action-deployment.md)。
+
+## 合作伙伴
+
+[![IPWO 住宅代理](pic/98170abe6955c352c69944323006b457.jpg)](https://www.ipwo.net/?ref=githubfreemail)
+
+[IPWO](https://www.ipwo.net/?ref=githubfreemail) 的住宅代理网络覆盖 195+ 地区、9000 万活跃住宅 IP，提供动态 / 静态 / 不限量三种形态，兼容 HTTP(S) 与 SOCKS5，可按国家、城市定位与会话配置。
+
+常用于邮件系统测试、API 请求验证、网页访问测试与自动化工作流。可免费测试，折扣码 `0200`。
 
 ## 感谢贡献者
 

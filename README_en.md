@@ -6,11 +6,11 @@
 
 An open-source **temporary email service** built on Cloudflare Workers + D1 + R2, featuring a decoupled frontend and backend, RESTful API support, and full functionality including email receiving, sending, forwarding, and user management.
 
-**Current version: V5.3.1** - New Cyberpersons sending channel with automatic Resend / SendFlare / Cyberpersons routing based on sender domain.
+**Current version: V5.3.2** - Security fix: an address already owned by another user can no longer be claimed (cross-user mailbox takeover, [issue #73](https://github.com/idinging/freemail/issues/73)).
 
 `This email service supports automatic mailbox creation upon receiving emails. Forwarding target email addresses must be verified in Cloudflare Email Addresses.`
 
-📖 **[One-Click Deployment Guide](docs/yijianbushu.md)** | 🤖 **[GitHub Actions Deployment Guide](docs/action-deployment.md)** | 📬 **[Resend Sending Config](docs/resend.md)** | 🚀 **[SendFlare Sending Config](docs/sendflare.md)** | ☁️ **[Cyberpersons Sending Config](docs/cyberpersons.md)** | 🧩 **[Provider Adapter](docs/provider-adapter.md)** | 📚 **[API Docs](docs/api.md)**
+📖 **[One-Click Deployment Guide](docs/yijianbushu.md)** | 🤖 **[GitHub Actions Deployment Guide](docs/action-deployment.md)** | 📬 **[Resend Sending Config](docs/resend.md)** | 🚀 **[SendFlare Sending Config](docs/sendflare.md)** | ☁️ **[Cyberpersons Sending Config](docs/cyberpersons.md)** | 🧩 **[Provider Adapter](docs/provider-adapter.md)** | 📚 **[API Docs](docs/api.md)** | 🌐 <u>[IPWO Residential Proxies](https://www.ipwo.net/?ref=githubfreemail)</u>
 
 ## 📸 Project Showcase
 
@@ -44,6 +44,7 @@ An open-source **temporary email service** built on Cloudflare Workers + D1 + R2
 
 | Version | Key Updates |
 |---------|-------------|
+| **V5.3.2** | Security fix: reject claiming an address already owned by another user · Atomic conditional insert prevents cross-user mailbox takeover ([issue #73](https://github.com/idinging/freemail/issues/73)) |
 | **V5.3.1** | New Cyberpersons (CyberPanel Email Delivery) sending channel · Three-tier routing (SendFlare → Resend → Cyberpersons) · Cyberpersons API adaptation (single-string recipient, independent from_name, message_id extraction) |
 | **V5.3.0** | Sending module abstracted to `src/email/providers/` · New SendFlare channel (based on `sendflare-sdk-ts`) · Automatic Resend / SendFlare routing by sender domain · `sent_emails` table adds `provider` field |
 | **V5.2.0** | Introduced postal-mime for improved email parsing · Fixed Chinese character garbled text in some clients |
@@ -208,6 +209,14 @@ wrangler d1 execute TEMP_MAIL_DB --command "SELECT * FROM mailboxes LIMIT 10"
 ## Automatic Deployment
 
 This project supports automatic deployment to Cloudflare Workers via GitHub Actions. See the [Automatic Deployment Guide](docs/action-deployment.md) for details.
+
+## Partners
+
+[![IPWO Residential Proxies](pic/98170abe6955c352c69944323006b457.jpg)](https://www.ipwo.net/?ref=githubfreemail)
+
+[IPWO](https://www.ipwo.net/?ref=githubfreemail) runs a residential proxy network covering 195+ regions and 90M+ active residential IPs, available as dynamic, static or unlimited plans over HTTP(S) and SOCKS5, with country / city targeting and session configuration.
+
+It is commonly used for email system testing, API request validation, web access testing and automated workflows. Free trial available with code `0200`.
 
 ## Contributors
 
